@@ -3,7 +3,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import permissions, viewsets, filters
 from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.mixins import CreateModelMixin, ListModelMixin
 
 from posts.models import Group, Post, User
 from .permissions import IsOwnerOrReadOnly
@@ -47,15 +46,14 @@ class CommentViewSet(viewsets.ModelViewSet):
         return post.comments.all()
 
 
-class FollowViewSet(CreateModelMixin, ListModelMixin,
-                    viewsets.GenericViewSet):
+class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('user__username', 'following__username')
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.request.user.username)
+        user = self.request.user
         return user.follower.all()
 
     def perform_create(self, serializer):

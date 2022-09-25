@@ -3,7 +3,7 @@
 ### Как запустить проект:
 Клонировать репозиторий и перейти в него в командной строке:
 ```
-https://github.com/Artem020793/api_final_yatube
+https://github.com/Barty-sim/api_final_yatube
 ```
 ```
 cd api_final_yatube
@@ -30,6 +30,8 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+### После запуска
+**После запуска проекта, по адресу http://127.0.0.1:8000/redoc/ документация для API Yatube, с описанием как должен работать проект.
 ### Примеры
 **Для доступа к API необходимо получить токен: 
 Нужно выполнить POST-запрос localhost:8000/api/v1/token/ передав поля username и password. API вернет JWT-токен**
