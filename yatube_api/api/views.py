@@ -51,7 +51,7 @@ class FollowViewSet(CreateModelMixin, ListModelMixin, viewsets.GenericViewSet):
     pass
 
 
-class LightFollowtViewSet(FollowViewSet):
+class FollowtViewSet(FollowViewSet):
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.SearchFilter,)
